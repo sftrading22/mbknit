@@ -135,13 +135,10 @@ export function Header() {
                   <Image
                     src="/logo.png"
                     alt="MB Knit Logo"
-                    width={40}
-                    height={40}
+                    width={200}
+                    height={70}
                     className="object-contain"
                   />
-                  <span className="font-serif text-2xl font-bold tracking-tight text-foreground">
-                    MB Knit
-                  </span>
                 </Link>
                 <motion.button
                   whileTap={{ scale: 0.95 }}
