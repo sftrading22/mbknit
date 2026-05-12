@@ -88,7 +88,7 @@ export function Hero() {
               size="lg"
               className="bg-white text-black hover:bg-white/90 font-medium h-12 sm:h-14 px-6 sm:px-8 text-sm sm:text-base group"
             >
-              <Link href="#capabilities">
+              <Link href="/capabilities">
                 Explore Our Capabilities
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
@@ -99,7 +99,7 @@ export function Hero() {
               size="lg"
               className="border-white/30 text-white hover:bg-white/10 bg-white/5 h-12 sm:h-14 px-6 sm:px-8 text-sm sm:text-base"
             >
-              <Link href="#contact">Request a Quote</Link>
+              <Link href="/contact">Request a Quote</Link>
             </Button>
           </motion.div>
 

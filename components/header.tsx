@@ -8,11 +8,11 @@ import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 
 const navigation = [
-  { name: "About", href: "#about" },
-  { name: "Capabilities", href: "#capabilities" },
-  { name: "Products", href: "#products" },
-  { name: "Certifications", href: "#certifications" },
-  { name: "Contact", href: "#contact" },
+  { name: "About", href: "/about" },
+  { name: "Capabilities", href: "/capabilities" },
+  { name: "Products", href: "/products" },
+  { name: "Certifications", href: "/certifications" },
+  { name: "Contact", href: "/contact" },
 ]
 
 export function Header() {
@@ -104,7 +104,7 @@ export function Header() {
               : "bg-white text-black hover:bg-white/90"
               }`}
           >
-            <Link href="#contact">Get in Touch</Link>
+            <Link href="/contact">Get in Touch</Link>
           </Button>
         </motion.div>
       </nav>
