@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
-
+import Image from "next/image"
 const navigation = {
   company: [
     { name: "About Us", href: "#about" },
@@ -27,20 +27,29 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12 lg:px-8 lg:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:grid-cols-4">
           {/* Brand */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="sm:col-span-2 lg:col-span-1"
           >
-            <Link href="/" className="inline-block group">
+            {/* <Link href="/" className="inline-block group">
               <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight">
                 MB Knit
               </span>
+            </Link> */}
+            <Link href="/" className="-m-1.5 p-1.5 group flex items-center gap-3">
+              <Image
+                src="/logo.png"
+                alt="MB Knit Logo"
+                width={200}
+                height={70}
+                className="object-contain"
+              />
             </Link>
             <p className="mt-4 text-sm text-primary-foreground/60 max-w-xs leading-relaxed">
-              100% export-oriented knit garment manufacturing facility serving 
+              100% export-oriented knit garment manufacturing facility serving
               global brands since 1992.
             </p>
             <p className="mt-4 text-xs text-primary-foreground/40">
@@ -115,7 +124,7 @@ export function Footer() {
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -129,9 +138,9 @@ export function Footer() {
             <div className="flex items-center gap-4">
               <p className="text-xs text-primary-foreground/40">
                 Part of{" "}
-                <a 
-                  href="https://www.matrixglobalplatform.com" 
-                  target="_blank" 
+                <a
+                  href="https://www.matrixglobalplatform.com"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary-foreground transition-colors underline underline-offset-2"
                 >
@@ -143,10 +152,10 @@ export function Footer() {
                 className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:bg-primary-foreground/10 transition-colors group"
                 aria-label="Scroll to top"
               >
-                <svg 
-                  className="w-4 h-4 rotate-180 text-primary-foreground/60 group-hover:text-primary-foreground transition-colors" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
+                <svg
+                  className="w-4 h-4 rotate-180 text-primary-foreground/60 group-hover:text-primary-foreground transition-colors"
+                  fill="none"
+                  viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
