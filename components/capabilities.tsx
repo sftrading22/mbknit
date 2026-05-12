@@ -90,31 +90,38 @@ const capacityMix = [
 
 export function Capabilities() {
   return (
-    <section id="capabilities" className="py-16 sm:py-24 lg:py-32 bg-muted overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="capabilities" className="py-20 sm:py-32 lg:py-40 bg-muted/30 overflow-hidden relative">
+      {/* Decorative background blur */}
+      <div className="absolute top-1/4 -right-20 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="text-center max-w-2xl mx-auto mb-12 sm:mb-16"
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-24"
         >
-          <motion.p 
-            variants={fadeInUp}
-            className="text-xs sm:text-sm font-medium uppercase tracking-[0.15em] text-accent mb-3 sm:mb-4"
-          >
-            Manufacturing Capabilities
-          </motion.p>
+          <motion.div variants={fadeInUp} className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-px w-6 bg-accent" />
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-accent">
+              Manufacturing Strength
+            </p>
+            <div className="h-px w-6 bg-accent" />
+          </motion.div>
+          
           <motion.h2 
             variants={fadeInUp}
-            className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground text-balance"
+            className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance leading-[1.2]"
           >
-            Built for Scale, Designed for Quality
+            Built for Scale, <span className="text-accent italic font-light">Designed for Quality</span>
           </motion.h2>
+          
           <motion.p 
             variants={fadeInUp}
-            className="mt-4 text-muted-foreground leading-relaxed text-sm sm:text-base"
+            className="mt-6 text-muted-foreground leading-relaxed text-base sm:text-lg font-light max-w-2xl mx-auto"
           >
             Our integrated manufacturing setup combines modern infrastructure with 
             proven processes to deliver consistent results at scale.
@@ -127,25 +134,30 @@ export function Capabilities() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
         >
           {capabilities.map((capability) => (
             <motion.div
               key={capability.title}
               variants={staggerItem}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="bg-card rounded-xl p-6 sm:p-8 border border-border hover:shadow-xl hover:border-accent/20 transition-all duration-300 group"
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="bg-card rounded-2xl p-8 border border-border/60 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-accent/30 transition-all duration-300 group relative overflow-hidden"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-accent/10 transition-colors duration-300">
-                <capability.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary group-hover:text-accent transition-colors duration-300" />
+              {/* Card hover effect */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-bl-full translate-x-12 -translate-y-12 transition-transform duration-500 group-hover:translate-x-0 group-hover:-translate-y-0" />
+
+              <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-8 group-hover:bg-accent/10 transition-colors duration-300">
+                <capability.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" />
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
-                <h3 className="font-semibold text-base sm:text-lg text-foreground">{capability.title}</h3>
-                <span className="text-[10px] sm:text-xs font-medium bg-secondary text-secondary-foreground px-2.5 py-1 rounded-full whitespace-nowrap self-start">
+              
+              <div className="flex flex-col gap-2 mb-4">
+                <h3 className="font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors">{capability.title}</h3>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-accent bg-accent/10 px-3 py-1 rounded-full w-fit">
                   {capability.stats}
                 </span>
               </div>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              
+              <p className="text-muted-foreground text-sm leading-relaxed font-light">
                 {capability.description}
               </p>
             </motion.div>
@@ -157,36 +169,43 @@ export function Capabilities() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-12 sm:mt-16 bg-card rounded-xl border border-border p-6 sm:p-8 lg:p-12 relative overflow-hidden"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-20 sm:mt-32 bg-primary rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl"
         >
           {/* Background decoration */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-accent/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-32 h-32 border-l border-b border-white/10 rounded-bl-3xl translate-x-8 -translate-y-8" />
           
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-foreground mb-6 sm:mb-8 text-center relative">
-            Monthly Production Capacity Mix
-          </h3>
-          <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 relative">
-            {capacityMix.map((item, index) => (
-              <motion.div
-                key={item.type}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="text-center relative"
-              >
-                {index > 0 && (
-                  <div className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-16 bg-border" />
-                )}
-                <CounterUp
-                  value={item.capacity}
-                  className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground"
-                />
-                <p className="text-base sm:text-lg font-semibold text-foreground mt-2">{item.type}</p>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-1">{item.description}</p>
-              </motion.div>
-            ))}
+          <div className="relative z-10">
+            <div className="flex flex-col items-center mb-12 sm:mb-16">
+              <p className="text-accent text-xs sm:text-sm font-bold uppercase tracking-[0.3em] mb-4">Production Volume</p>
+              <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white text-center">
+                Monthly Capacity Mix
+              </h3>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-12 sm:gap-8 relative">
+              {capacityMix.map((item, index) => (
+                <motion.div
+                  key={item.type}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  className="text-center group"
+                >
+                  <CounterUp
+                    value={item.capacity}
+                    className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-accent mb-4 block group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="h-px w-8 bg-white/20 mx-auto mb-4" />
+                  <p className="text-lg sm:text-xl font-bold text-white mb-2">{item.type}</p>
+                  <p className="text-sm text-primary-foreground/60 font-light leading-relaxed max-w-[200px] mx-auto">
+                    {item.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

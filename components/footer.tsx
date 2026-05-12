@@ -6,14 +6,15 @@ import { ArrowUpRight } from "lucide-react"
 import Image from "next/image"
 const navigation = {
   company: [
-    { name: "About Us", href: "#about" },
-    { name: "Capabilities", href: "#capabilities" },
-    { name: "Products", href: "#products" },
-    { name: "Certifications", href: "#certifications" },
+    { name: "About Us", href: "/about" },
+    { name: "Capabilities", href: "/capabilities" },
+    { name: "Products", href: "/products" },
+    { name: "Certifications", href: "/certifications" },
+    { name: "Sustainability", href: "/sustainability" },
   ],
   contact: [
-    { name: "Get in Touch", href: "#contact" },
-    { name: "Request Quote", href: "#contact" },
+    { name: "Get in Touch", href: "/contact" },
+    { name: "Request Quote", href: "/contact" },
   ],
 }
 

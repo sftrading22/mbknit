@@ -12,6 +12,7 @@ const navigation = [
   { name: "Capabilities", href: "/capabilities" },
   { name: "Products", href: "/products" },
   { name: "Certifications", href: "/certifications" },
+  { name: "Sustainability", href: "/sustainability" },
   { name: "Contact", href: "/contact" },
 ]
 
@@ -51,6 +52,7 @@ export function Header() {
               width={200}
               height={70}
               className="object-contain"
+              priority
             />
           </Link>
         </motion.div>
@@ -186,7 +188,7 @@ export function Header() {
                     className="py-6"
                   >
                     <Button asChild className="w-full bg-primary text-primary-foreground">
-                      <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>
+                      <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                         Get in Touch
                       </Link>
                     </Button>

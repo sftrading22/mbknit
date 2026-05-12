@@ -15,9 +15,19 @@ const highlights = [
 
 export function About() {
   return (
-    <section id="about" className="py-16 sm:py-24 lg:py-32 bg-background overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
+    <section id="about" className="py-20 sm:py-32 lg:py-40 bg-background overflow-hidden relative">
+      {/* Background patterns */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-[0.03]">
+        <svg width="100%" height="100%">
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" />
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-24 items-center">
           {/* Image */}
           <motion.div 
             initial="hidden"
@@ -26,28 +36,35 @@ export function About() {
             variants={slideInLeft}
             className="relative"
           >
-            <div className="aspect-[4/3] relative rounded-xl overflow-hidden shadow-2xl">
-              <Image
-                src="/images/production-line.jpg"
-                alt="MB Knit production line"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            <div className="relative group">
+              <div className="aspect-[4/5] sm:aspect-[4/3] relative rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
+                <Image
+                  src="/images/production-line.jpg"
+                  alt="MB Knit production line"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-navy-950/20 to-transparent" />
+              </div>
+              
+              {/* Floating Badge */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="absolute -bottom-8 -right-4 sm:-right-10 bg-primary p-6 sm:p-8 rounded-2xl shadow-2xl border border-white/10"
+              >
+                <p className="font-serif text-4xl sm:text-5xl font-bold text-accent">30+</p>
+                <p className="text-primary-foreground/70 text-xs sm:text-sm uppercase tracking-widest mt-2 font-semibold">
+                  Years of <br /> Excellence
+                </p>
+              </motion.div>
             </div>
-            {/* Floating Card */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="absolute -bottom-6 -right-4 sm:-right-6 bg-card p-4 sm:p-6 rounded-xl shadow-2xl border border-border max-w-[200px] sm:max-w-xs"
-            >
-              <p className="font-serif text-3xl sm:text-4xl font-bold text-foreground">30+</p>
-              <p className="text-muted-foreground text-sm sm:text-base mt-1">Years of Manufacturing Excellence</p>
-            </motion.div>
-            {/* Decorative element */}
-            <div className="absolute -top-4 -left-4 w-24 h-24 border-l-2 border-t-2 border-accent/30 rounded-tl-xl hidden lg:block" />
+
+            {/* Decorative frames */}
+            <div className="absolute -top-6 -left-6 w-32 h-32 border-l border-t border-accent/40 rounded-tl-3xl -z-10" />
+            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-accent/5 rounded-full blur-3xl -z-10" />
           </motion.div>
 
           {/* Content */}
@@ -57,21 +74,24 @@ export function About() {
             viewport={{ once: true, margin: "-100px" }}
             variants={slideInRight}
           >
-            <motion.p 
-              variants={fadeInUp}
-              className="text-xs sm:text-sm font-medium uppercase tracking-[0.15em] text-accent mb-3 sm:mb-4"
-            >
-              About MB Knit
-            </motion.p>
+            <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-4">
+              <div className="h-px w-6 bg-accent" />
+              <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-accent">
+                Legacy & Vision
+              </p>
+            </motion.div>
+            
             <motion.h2 
               variants={fadeInUp}
-              className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground text-balance leading-tight"
+              className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance leading-[1.2]"
             >
-              Manufacturing Strength Built on Consistency
+              Manufacturing Strength <br />
+              <span className="text-accent italic font-light">Built on Consistency</span>
             </motion.h2>
+            
             <motion.div 
               variants={fadeInUp}
-              className="mt-4 sm:mt-6 space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base"
+              className="mt-6 sm:mt-8 space-y-5 text-muted-foreground leading-relaxed text-base sm:text-lg font-light"
             >
               <p>
                 MB Knit Fashion Ltd. is a 100% export-oriented knit garment manufacturing 
@@ -86,26 +106,26 @@ export function About() {
             </motion.div>
 
             {/* Highlights List */}
-            <motion.ul 
+            <motion.div 
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mt-6 sm:mt-8 space-y-2.5 sm:space-y-3"
+              className="mt-10 sm:mt-12 grid sm:grid-cols-2 gap-4 sm:gap-6"
             >
               {highlights.map((item) => (
-                <motion.li 
+                <motion.div 
                   key={item} 
                   variants={staggerItem}
-                  className="flex items-center gap-3"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-card border border-border hover:border-accent/30 hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-accent" />
+                  <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
                   </div>
-                  <span className="text-foreground text-sm sm:text-base">{item}</span>
-                </motion.li>
+                  <span className="text-foreground font-medium text-sm sm:text-base leading-tight">{item}</span>
+                </motion.div>
               ))}
-            </motion.ul>
+            </motion.div>
           </motion.div>
         </div>
       </div>

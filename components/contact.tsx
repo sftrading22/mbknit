@@ -65,51 +65,63 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-16 sm:py-24 lg:py-32 bg-muted overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 sm:py-32 lg:py-40 bg-muted/30 overflow-hidden relative">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        <div className="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 -left-20 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]" />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="text-center max-w-2xl mx-auto mb-12 sm:mb-16"
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-24"
         >
-          <motion.p 
-            variants={fadeInUp}
-            className="text-xs sm:text-sm font-medium uppercase tracking-[0.15em] text-accent mb-3 sm:mb-4"
-          >
-            Get In Touch
-          </motion.p>
+          <motion.div variants={fadeInUp} className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-px w-6 bg-accent" />
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-accent">
+              Connect With Us
+            </p>
+            <div className="h-px w-6 bg-accent" />
+          </motion.div>
+          
           <motion.h2 
             variants={fadeInUp}
-            className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground text-balance"
+            className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance leading-[1.2]"
           >
-            {`Let's Discuss Your Requirements`}
+            {`Let's Discuss Your`} <span className="text-accent italic font-light">Requirements</span>
           </motion.h2>
+          
           <motion.p 
             variants={fadeInUp}
-            className="mt-4 text-muted-foreground leading-relaxed text-sm sm:text-base"
+            className="mt-6 text-muted-foreground leading-relaxed text-base sm:text-lg font-light max-w-2xl mx-auto"
           >
-            Ready to explore a partnership? Contact our team to discuss your 
-            production needs and how we can support your programs.
+            Ready to explore a partnership? Contact our business development team 
+            to discuss your production needs and how we can support your retail programs.
           </motion.p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-2 gap-12 sm:gap-20 items-start">
           {/* Contact Form */}
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={slideInLeft}
-            className="bg-card rounded-xl p-6 sm:p-8 lg:p-10 border border-border shadow-sm"
+            className="bg-card rounded-3xl p-8 sm:p-12 border border-border/60 shadow-xl shadow-black/5 relative overflow-hidden"
           >
-            <h3 className="font-semibold text-lg sm:text-xl text-foreground mb-6">Send us a message</h3>
-            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+            {/* Subtle form decoration */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-full pointer-events-none" />
+            
+            <h3 className="font-serif text-2xl font-bold text-foreground mb-8">Send us a message</h3>
+            <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">
                     Your Name
                   </label>
                   <Input
@@ -117,13 +129,13 @@ export function Contact() {
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="John Doe"
+                    placeholder="e.g. John Doe"
                     required
-                    className="h-11 sm:h-12"
+                    className="h-14 bg-background/50 border-border/60 focus:border-accent transition-colors rounded-xl"
                   />
                 </div>
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
+                <div className="space-y-2">
+                  <label htmlFor="company" className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">
                     Company
                   </label>
                   <Input
@@ -131,14 +143,14 @@ export function Contact() {
                     type="text"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    placeholder="Your Company"
+                    placeholder="Your Company Name"
                     required
-                    className="h-11 sm:h-12"
+                    className="h-14 bg-background/50 border-border/60 focus:border-accent transition-colors rounded-xl"
                   />
                 </div>
               </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">
                   Email Address
                 </label>
                 <Input
@@ -146,37 +158,40 @@ export function Contact() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="john@company.com"
+                  placeholder="name@example.com"
                   required
-                  className="h-11 sm:h-12"
+                  className="h-14 bg-background/50 border-border/60 focus:border-accent transition-colors rounded-xl"
                 />
               </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Message
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">
+                  Message Details
                 </label>
                 <textarea
                   id="message"
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell us about your requirements..."
-                  className="flex w-full rounded-lg border border-input bg-background px-4 py-3 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
+                  placeholder="How can we help with your production needs?"
+                  className="flex w-full rounded-xl border border-border/60 bg-background/50 px-4 py-4 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus:border-accent transition-colors disabled:cursor-not-allowed disabled:opacity-50 resize-none"
                   required
                 />
               </div>
               <Button 
                 type="submit" 
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-11 sm:h-12 text-sm sm:text-base group"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-16 text-base font-bold rounded-xl group transition-all duration-300 shadow-lg shadow-primary/10"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
-                  "Sending..."
+                  <span className="flex items-center gap-2">
+                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Processing...
+                  </span>
                 ) : (
-                  <>
-                    Send Message
-                    <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-                  </>
+                  <span className="flex items-center justify-center gap-2">
+                    Send Inquiry
+                    <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </span>
                 )}
               </Button>
             </form>
@@ -188,38 +203,38 @@ export function Contact() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={slideInRight}
-            className="space-y-8 sm:space-y-10"
+            className="space-y-12 sm:space-y-16"
           >
-            {/* Info Cards */}
+            {/* Info Items */}
             <motion.div 
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="space-y-3 sm:space-y-4"
+              className="grid gap-6"
             >
               {contactInfo.map((info) => (
                 <motion.div 
                   key={info.label} 
                   variants={staggerItem}
-                  className="flex gap-4 p-4 rounded-lg bg-card border border-border hover:border-accent/30 transition-colors"
+                  className="flex gap-6 p-6 rounded-2xl bg-card border border-border/60 hover:border-accent/30 hover:shadow-lg transition-all duration-300 group"
                 >
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-primary/5 flex items-center justify-center flex-shrink-0">
-                    <info.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/10 transition-colors">
+                    <info.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs sm:text-sm text-muted-foreground">{info.label}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent mb-1">{info.label}</p>
                     {info.href ? (
                       <a 
                         href={info.href} 
-                        className="text-sm sm:text-base text-foreground hover:text-accent transition-colors break-words"
+                        className="text-base sm:text-lg text-foreground font-medium hover:text-accent transition-colors break-words leading-tight"
                         target={info.href.startsWith("http") ? "_blank" : undefined}
                         rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-sm sm:text-base text-foreground break-words">{info.value}</p>
+                      <p className="text-base sm:text-lg text-foreground font-medium break-words leading-snug">{info.value}</p>
                     )}
                   </div>
                 </motion.div>
@@ -227,31 +242,39 @@ export function Contact() {
             </motion.div>
 
             {/* Contact Persons */}
-            <div>
-              <h3 className="font-semibold text-base sm:text-lg text-foreground mb-4">Contact Persons</h3>
+            <div className="relative">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="h-px w-6 bg-accent" />
+                <h3 className="font-serif text-2xl font-bold text-foreground">Contact Persons</h3>
+              </div>
+              
               <motion.div 
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="space-y-3 sm:space-y-4"
+                className="grid gap-6"
               >
                 {contacts.map((contact) => (
                   <motion.div 
                     key={contact.name}
                     variants={staggerItem}
-                    whileHover={{ y: -2 }}
-                    className="bg-card rounded-lg p-4 sm:p-5 border border-border hover:border-accent/30 hover:shadow-md transition-all"
+                    whileHover={{ x: 5 }}
+                    className="bg-card rounded-2xl p-6 border border-border/60 hover:border-accent/20 transition-all group"
                   >
-                    <p className="font-medium text-foreground text-sm sm:text-base">{contact.name}</p>
-                    <p className="text-xs sm:text-sm text-muted-foreground mt-1">{contact.title}</p>
-                    <a 
-                      href={`mailto:${contact.email}`}
-                      className="text-xs sm:text-sm text-accent hover:underline mt-2 inline-flex items-center gap-1"
-                    >
-                      <Mail className="h-3 w-3" />
-                      {contact.email}
-                    </a>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <p className="font-bold text-foreground text-lg group-hover:text-accent transition-colors">{contact.name}</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground mt-1 font-light italic">{contact.title}</p>
+                      </div>
+                      <a 
+                        href={`mailto:${contact.email}`}
+                        className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent hover:bg-accent hover:text-white transition-all shadow-sm"
+                        title={contact.email}
+                      >
+                        <Mail className="h-4 w-4" />
+                      </a>
+                    </div>
                   </motion.div>
                 ))}
               </motion.div>
