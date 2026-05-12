@@ -25,10 +25,10 @@ export function Hero() {
           className="object-cover scale-105"
           priority
         />
-        {/* Cinematic Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/80 to-transparent opacity-90" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(15,23,41,0.4)_100%)]" />
+        {/* Cinematic Overlays (Max 50% Intensity) */}
+        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent z-20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-20" />
       </div>
 
       {/* Decorative elements */}

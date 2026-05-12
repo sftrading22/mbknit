@@ -233,46 +233,76 @@ export function Products() {
 
             {/* Visual Globe element */}
             <div className="relative">
-              <div className="aspect-square relative rounded-full bg-primary/5 p-12 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full border-2 border-dashed border-accent/20 animate-[spin_60s_linear_infinite]" />
-                <div className="absolute inset-8 rounded-full border border-primary/20 animate-[spin_40s_linear_infinite_reverse]" />
+              <div className="aspect-square relative rounded-full bg-primary/5 p-4 sm:p-8 flex items-center justify-center">
+                {/* Outer rotating ring */}
+                <div className="absolute inset-0 rounded-full border border-accent/20 animate-[spin_30s_linear_infinite]" />
+                {/* Inner dashed ring */}
+                <div className="absolute inset-4 sm:inset-8 rounded-full border border-dashed border-primary/20 animate-[spin_20s_linear_infinite_reverse]" />
                 
-                <div className="relative z-10 text-center">
-                  <div className="relative mb-6 mx-auto w-24 h-24 sm:w-32 sm:h-32">
-                    <svg viewBox="0 0 100 100" className="w-full h-full text-accent/40 animate-[spin_120s_linear_infinite]">
-                      <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2" />
-                      <path d="M50 2 A48 48 0 0 1 50 98 A48 48 0 0 1 50 2" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                      <path d="M2 50 A48 48 0 0 1 98 50 A48 48 0 0 1 2 50" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                      {/* Stylized Continents */}
-                      <path d="M30 35c5-2 10-5 15-2s8 8 5 12-10 5-15 2-8-8-5-12zM65 45c5-2 10-5 15-2s8 8 5 12-10 5-15 2-8-8-5-12zM40 65c5-2 10-5 15-2s8 8 5 12-10 5-15 2-8-8-5-12z" fill="currentColor" opacity="0.4" />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Globe2 className="h-10 w-10 sm:h-12 sm:w-12 text-accent/60" />
-                    </div>
-                  </div>
-                  <div className="font-serif text-6xl sm:text-7xl font-bold text-primary/80 leading-none">3</div>
-                  <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-accent mt-2">Continents</p>
+                <div className="relative z-10 w-full h-full flex items-center justify-center">
+                  <svg viewBox="0 0 200 200" className="w-full h-full text-accent transition-all duration-700">
+                    <defs>
+                      <radialGradient id="globeGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" stopColor="currentColor" stopOpacity="0.2" />
+                        <stop offset="100%" stopColor="currentColor" stopOpacity="0.05" />
+                      </radialGradient>
+                    </defs>
+                    
+                    {/* Main Sphere */}
+                    <circle cx="100" cy="100" r="80" fill="url(#globeGradient)" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.2" />
+                    
+                    {/* Latitudinal Lines */}
+                    <ellipse cx="100" cy="100" rx="80" ry="30" fill="none" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.1" />
+                    <ellipse cx="100" cy="100" rx="80" ry="15" fill="none" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.1" />
+                    <line x1="100" y1="20" x2="100" y2="180" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.1" />
+                    
+                    {/* Dot Matrix Continents (Stylized) */}
+                    <g className="animate-pulse opacity-40">
+                      {/* North America */}
+                      <circle cx="60" cy="60" r="2" fill="currentColor" />
+                      <circle cx="55" cy="55" r="1.5" fill="currentColor" />
+                      <circle cx="65" cy="58" r="1.5" fill="currentColor" />
+                      
+                      {/* Europe */}
+                      <circle cx="110" cy="55" r="2" fill="currentColor" />
+                      <circle cx="115" cy="52" r="1.5" fill="currentColor" />
+                      <circle cx="105" cy="58" r="1.5" fill="currentColor" />
+                      
+                      {/* Asia */}
+                      <circle cx="140" cy="65" r="2" fill="currentColor" />
+                      <circle cx="150" cy="70" r="1.5" fill="currentColor" />
+                      <circle cx="145" cy="75" r="1.5" fill="currentColor" />
+                    </g>
+                    
+                    {/* Center Content Overlay */}
+                    <foreignObject x="40" y="40" width="120" height="120">
+                      <div className="w-full h-full flex flex-col items-center justify-center text-center">
+                        <span className="font-serif text-5xl sm:text-7xl font-bold text-primary/80 leading-none">3</span>
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-accent mt-2">Continents</span>
+                      </div>
+                    </foreignObject>
+                  </svg>
                 </div>
 
-                {/* Floating flag indicators */}
+                {/* Floating flag indicators with enhanced styling */}
                 <motion.div 
                   animate={{ y: [0, -15, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-1/4 -right-4 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white shadow-2xl flex items-center justify-center p-2.5 sm:p-3 border border-border"
+                  className="absolute top-1/4 -right-2 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white shadow-2xl flex items-center justify-center p-2.5 sm:p-3 border border-border z-20 hover:scale-110 transition-transform"
                 >
                   <FlagEU className="w-full h-auto rounded-sm" />
                 </motion.div>
                 <motion.div 
                   animate={{ y: [0, 15, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute bottom-1/4 -left-4 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white shadow-2xl flex items-center justify-center p-2 sm:p-3 border border-border"
+                  className="absolute bottom-1/4 -left-2 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white shadow-2xl flex items-center justify-center p-2 sm:p-3 border border-border z-20 hover:scale-110 transition-transform"
                 >
                   <FlagUK className="w-full h-auto rounded-sm" />
                 </motion.div>
                 <motion.div 
                   animate={{ x: [0, 15, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white shadow-2xl flex items-center justify-center p-2.5 sm:p-3 border border-border"
+                  className="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white shadow-2xl flex items-center justify-center p-2.5 sm:p-3 border border-border z-20 hover:scale-110 transition-transform"
                 >
                   <FlagUS className="w-full h-auto rounded-sm" />
                 </motion.div>
