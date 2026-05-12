@@ -1,8 +1,47 @@
 "use client"
 
+import { useEffect, useRef, useState } from "react"
 import { Factory, Scissors, Layers, Clock, Users, Settings } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, useInView, useMotionValue, useSpring } from "framer-motion"
 import { fadeInUp, staggerContainer, staggerItem } from "@/lib/animations"
+
+// --------------- CounterUp ---------------
+function parseValue(raw: string): { number: number; prefix: string; suffix: string } {
+  // e.g. "2.187M", "0.9M", "0.7M"
+  const match = raw.match(/^([^\d]*?)([\d.]+)([^\d.]*)$/)
+  if (!match) return { number: 0, prefix: "", suffix: raw }
+  return { number: parseFloat(match[2]), prefix: match[1], suffix: match[3] }
+}
+
+function CounterUp({ value, className }: { value: string; className?: string }) {
+  const { number, prefix, suffix } = parseValue(value)
+  const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true, margin: "-80px" })
+
+  const motionVal = useMotionValue(0)
+  const spring = useSpring(motionVal, { stiffness: 60, damping: 20, mass: 1 })
+  const [display, setDisplay] = useState("0")
+
+  useEffect(() => {
+    if (inView) motionVal.set(number)
+  }, [inView, number, motionVal])
+
+  useEffect(() => {
+    const unsubscribe = spring.on("change", (v) => {
+      // preserve original decimal places
+      const decimals = (value.split(".")[1] ?? "").replace(/[^\d]/g, "").length
+      setDisplay(v.toFixed(decimals))
+    })
+    return unsubscribe
+  }, [spring, value])
+
+  return (
+    <span ref={ref} className={className}>
+      {prefix}{display}{suffix}
+    </span>
+  )
+}
+// -----------------------------------------
 
 const capabilities = [
   {
@@ -129,8 +168,8 @@ export function Capabilities() {
           </h3>
           <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 relative">
             {capacityMix.map((item, index) => (
-              <motion.div 
-                key={item.type} 
+              <motion.div
+                key={item.type}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -140,7 +179,10 @@ export function Capabilities() {
                 {index > 0 && (
                   <div className="hidden sm:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-16 bg-border" />
                 )}
-                <p className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">{item.capacity}</p>
+                <CounterUp
+                  value={item.capacity}
+                  className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground"
+                />
                 <p className="text-base sm:text-lg font-semibold text-foreground mt-2">{item.type}</p>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1">{item.description}</p>
               </motion.div>

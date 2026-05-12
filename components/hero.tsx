@@ -25,19 +25,19 @@ export function Hero() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/50 to-black/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
       </div>
 
       {/* Decorative elements */}
       <div className="absolute inset-0 z-[1] overflow-hidden">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.1 }}
           transition={{ duration: 2, delay: 1 }}
           className="absolute top-20 right-10 w-96 h-96 rounded-full border border-white/20 hidden lg:block"
         />
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.05 }}
           transition={{ duration: 2, delay: 1.5 }}
@@ -48,7 +48,7 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 py-24 sm:py-32 lg:px-8 lg:py-40 w-full">
         <div className="max-w-2xl">
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -56,8 +56,8 @@ export function Hero() {
           >
             Established 1992 — Bangladesh
           </motion.p>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -65,27 +65,27 @@ export function Hero() {
           >
             Precision Knit Manufacturing for Global Brands
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-white/70 max-w-xl"
           >
-            100% export-oriented garment manufacturing facility delivering consistent, 
-            high-volume retail programs for EU, UK and U.S. markets with a 30+ year 
+            100% export-oriented garment manufacturing facility delivering consistent,
+            high-volume retail programs for EU, UK and U.S. markets with a 30+ year
             track record of excellence.
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7 }}
             className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
-            <Button 
-              asChild 
-              size="lg" 
+            <Button
+              asChild
+              size="lg"
               className="bg-white text-black hover:bg-white/90 font-medium h-12 sm:h-14 px-6 sm:px-8 text-sm sm:text-base group"
             >
               <Link href="#capabilities">
@@ -93,9 +93,9 @@ export function Hero() {
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
-            <Button 
-              asChild 
-              variant="outline" 
+            <Button
+              asChild
+              variant="outline"
               size="lg"
               className="border-white/30 text-white hover:bg-white/10 bg-white/5 h-12 sm:h-14 px-6 sm:px-8 text-sm sm:text-base"
             >
@@ -104,7 +104,7 @@ export function Hero() {
           </motion.div>
 
           {/* Quick Stats */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
@@ -128,13 +128,13 @@ export function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.5 }}
         className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
-        <motion.div 
+        <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2"
