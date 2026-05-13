@@ -65,7 +65,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h3 className="text-sm font-semibold">Company</h3>
+            <h3 className="text-sm font-bold uppercase tracking-widest text-accent">Company</h3>
             <ul className="mt-4 space-y-2.5 sm:space-y-3">
               {navigation.company.map((item) => (
                 <li key={item.name}>
@@ -88,7 +88,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-sm font-semibold">Contact</h3>
+            <h3 className="text-sm font-bold uppercase tracking-widest text-accent">Contact</h3>
             <ul className="mt-4 space-y-2.5 sm:space-y-3">
               {navigation.contact.map((item) => (
                 <li key={item.name}>
@@ -111,7 +111,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-sm font-semibold">Factory Address</h3>
+            <h3 className="text-sm font-bold uppercase tracking-widest text-accent">Factory Address</h3>
             <address className="mt-4 text-sm text-primary-foreground/60 not-italic leading-relaxed">
               B/164-166 & B/185-187<br />
               BSCIC I/E, Fatullah<br />
@@ -125,14 +125,10 @@ export function Footer() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-primary-foreground/10"
+        <div
+          className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-primary-foreground/10 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 bg-black/10"
         >
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 py-6">
             <p className="text-xs text-primary-foreground/40 text-center sm:text-left">
               {new Date().getFullYear()} MB Knit Fashion Ltd. All rights reserved.
             </p>
@@ -164,7 +160,7 @@ export function Footer() {
               </button>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   )
