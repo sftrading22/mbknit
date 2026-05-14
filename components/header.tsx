@@ -35,7 +35,7 @@ export function Header() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
         ? "bg-background/98 backdrop-blur-md border-b border-border shadow-sm"
-        : "bg-transparent border-b border-transparent"
+        : "bg-white/80 border-b border-transparent shadow-sm"
         }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-4 lg:px-8">
@@ -80,10 +80,7 @@ export function Header() {
             >
               <Link
                 href={item.href}
-                className={`text-sm font-medium transition-colors relative group ${scrolled
-                  ? "text-muted-foreground hover:text-foreground"
-                  : "text-white/80 hover:text-white"
-                  }`}
+                className={`text-sm font-medium transition-colors relative group text-muted-foreground hover:text-foreground`}
               >
                 {item.name}
                 <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${scrolled ? "bg-foreground" : "bg-white"
